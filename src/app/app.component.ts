@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { userNameSearch } from 'Shared/userNameSearch.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'rest-api-practice';
-}
+  userName = "";
+  userData = "";
+
+  constructor(private userSearch: userNameSearch) {}
+
+  eventClick() {
+    this.returnUsers();
+  }
+
+  returnUsers() {
+  this.userSearch.gitHub(this.userName).subscribe(value => this.userData = JSON.stringify(value));
+  }
+  }
+
+
+
+
